@@ -15,13 +15,11 @@ const WindowWrapper = (Component, windowKey) => {
         useGSAP(() => {
             const el = ref.current;
             if (!el) return;
-
             const [instance] = Draggable.create(el, {
                 onPress: () => focusWindows(windowKey),
+            });
+            return () => instance.kill();
         }, []);
-
-        return () => instance.kill();
-    }, []);
 
         useGSAP(() => {
             const el = ref.current;
@@ -50,8 +48,8 @@ const WindowWrapper = (Component, windowKey) => {
         );
     };
 
-    Wrapped.displayName = `WindowWrapper(${Component.displayName ||
-    Component.name || "Component" }`;
+    Wrapped.displayName = `WindowWrapper(${Component.displayName || Component.name || "Component"})`;
+
 
     return Wrapped;
 };
