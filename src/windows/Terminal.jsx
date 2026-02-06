@@ -9,13 +9,13 @@ const Terminal = () => {
         <>
             <div id="window-header">
                 <WindowControls  target ='terminal'/>
-                <h2>Tech Stack</h2>
+                <h2>Mes Compétences</h2>
             </div>
 
             <div className="techstack">
                 <p>
                     <span className="font-bold"> @Zilio % </span>
-                    show tech stack
+                    Compétences
                 </p>
 
                 <div className="label">
