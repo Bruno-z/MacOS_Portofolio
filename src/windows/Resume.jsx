@@ -13,32 +13,28 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 ).toString();
 
 
-const Resume = () => {
+const Resume = ({ title }) => {
     return (
         <>
             <div id="window-header">
-                <WindowControls  target="resume"/>
-                <h2>Resume.pdf</h2>
+                <WindowControls target="resume" />
+                <h2>{title}</h2>  {/* Utilisation de la prop */}
                 <a
-                    href="files/resume.pdf"
+                    href="/files/resume.pdf"
                     download
                     className="cursor-pointer"
                     title="Download Resume"
-                    >
-                    <Download className="icon"/>
+                >
+                    <Download className="icon" />
                 </a>
             </div>
 
-            <Document file="files/resume.pdf">
-                <Page
-                    pageNumber={1}
-                    renderTextLayer
-                    renderAnnotationLayer
-                />
+            <Document file="/files/resume.pdf">
+                <Page pageNumber={1} renderTextLayer renderAnnotationLayer />
             </Document>
         </>
     );
 };
-const ResumeWindow = WindowWrapper(Resume, 'resume');
 
-export default ResumeWindow
+const ResumeWindow = WindowWrapper(Resume, 'resume', { title: 'Mon CV' });
+export default ResumeWindow;

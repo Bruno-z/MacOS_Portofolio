@@ -22,7 +22,7 @@ const Gallery = () => {
             <div className="bg-white flex flex-1 overflow-hidden rounded-xl min-h-[620px]">
                 {/* SIDEBAR */}
                 <aside className="w-56 border-r px-3 py-4 shrink-0">
-                    <p className="text-sm font-medium text-gray-400 mb-3 uppercase">Photos</p>
+                    <p className="text-sm font-medium text-gray-400 mb-3 "></p>
                     <ul className="space-y-1">
                         {photosLinks.map(link => (
                             <li
