@@ -6,7 +6,8 @@ import Text from "#windows/Text.jsx";
 import ImageWindowContent from "#windows/ImageWindowContent.jsx";
 import Contact from "#windows/Contact.jsx";
 import Gallery from "#windows/Gallery.jsx";
+import Video from "#windows/Video.jsx";
 
 
 
-export {Terminal, Safari, Resume, Finder, Text, ImageWindowContent, Contact, Gallery};
+export {Terminal, Safari, Resume, Finder, Text, ImageWindowContent, Contact, Gallery, Video};
