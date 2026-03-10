@@ -657,7 +657,7 @@ Développement d’un logiciel interne Excel VBA pour la gestion des stocks.
                             kind: "file",
                             fileType: "video",
                             position: "top-50 left-40",
-                            videoUrl: "/videos/vba-zilio.mp4",
+                            videoUrl: "https://www.youtube.com/watch?v=TtEY1KPl8RY",
                             icon: "/images/thumbnailVBA.png",
                             description: `
 Vidéo de démonstration du logiciel VBA développé pour le Pôle Pousinies Bordeneuve.
@@ -731,7 +731,7 @@ Projet d’apprentissage : site vitrine inspiré de la série Arcane.
                             kind: "file",
                             fileType: "video",
                             position: "top-50 left-40",
-                            videoUrl: "/videos/arcane.mp4",
+                            videoUrl: "https://www.youtube.com/watch?v=RkE44BWjVZA",
                             icon: "/images/arcaneThumb.png",
                             description: `
 Vidéo de démonstration du site Arcane afin de rendre hommage à la série.

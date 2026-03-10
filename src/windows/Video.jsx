@@ -1,11 +1,16 @@
-import { useRef } from "react";
 import WindowWrapper from "#hoc/WindowWrapper.jsx";
 import { WindowControls } from "#components/index.js";
 
-const Video = ({ data }) => {
-    const videoRef = useRef(null);
+const getYouTubeEmbedUrl = (url) => {
+    if (!url) return null;
+    // Formats: youtube.com/watch?v=ID ou youtu.be/ID
+    const match = url.match(/(?:v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+    return match ? `https://www.youtube.com/embed/${match[1]}` : null;
+};
 
-    // Sécurité si data est absent
+const isYouTubeUrl = (url) => url && url.includes("youtu");
+
+const Video = ({ data }) => {
     if (!data) {
         return (
             <div className="p-4">
@@ -14,38 +19,32 @@ const Video = ({ data }) => {
         );
     }
 
-    // On force toujours description à être un tableau
-    const description = Array.isArray(data.description)
-        ? data.description
-        : data.description
-            ? [data.description]
-            : [];
+    const embedUrl = isYouTubeUrl(data.videoUrl)
+        ? getYouTubeEmbedUrl(data.videoUrl)
+        : null;
 
     return (
         <div className="p-4">
-            {/* Header macOS */}
             <div id="window-header" className="mb-2">
                 <WindowControls target="video" />
             </div>
 
-            {/* Vidéo */}
             {data.videoUrl && (
-                <video
-                    ref={videoRef}
-                    src={data.videoUrl}
-                    poster={data.icon}
-                    controls
-                    className="w-full h-auto rounded-lg shadow-md"
-                />
-            )}
-
-            {/* Description */}
-            {description.length > 0 && (
-                <ul className="mt-3 text-sm text-gray-600 space-y-1">
-                    {description.map((line, i) => (
-                        <li key={i}>• {line}</li>
-                    ))}
-                </ul>
+                embedUrl ? (
+                    <iframe
+                        src={embedUrl}
+                        className="w-full aspect-video rounded-lg shadow-md"
+                        allowFullScreen
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    />
+                ) : (
+                    <video
+                        src={data.videoUrl}
+                        poster={data.icon}
+                        controls
+                        className="w-full h-auto rounded-lg shadow-md"
+                    />
+                )
             )}
         </div>
     );
