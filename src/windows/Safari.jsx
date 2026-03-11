@@ -62,7 +62,7 @@ export const Safari = () => {
                                 <p>{date}</p>
                                 <h3>{title}</h3>
                                 <a href={link} target="_blank" rel="noopener noreferrer">
-                                   Ca ce passe ici ! <MoveRight className="icon"/>
+                                   Ça se passe ici ! <MoveRight className="icon"/>
                                 </a>
                             </div>
                         </div>

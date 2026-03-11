@@ -66,7 +66,7 @@ const dockApps = [
         id: "trash",
         name: "Archive", // was "Trash"
         icon: "trash.png",
-        canOpen: false,
+        canOpen: true,
     },
 ];
 
@@ -228,7 +228,7 @@ const photosLinks = [
     {
         id: 1,
         icon: "/icons/gicon1.svg",
-        title: "Mes Hoobies",
+        title: "Mes Hobbies",
     },
     {
         id: 2,
@@ -243,7 +243,7 @@ const photosLinks = [
     {
         id: 4,
         icon: "/icons/gicon4.svg",
-        title: "Déssiner",
+        title: "Dessiner",
     },
     {
         id: 5,
@@ -840,16 +840,16 @@ export const locations = {
 const INITIAL_Z_INDEX = 1000;
 
 const WINDOW_CONFIG = {
-    finder: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-    contact: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-    resume: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-    safari: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-    photos: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-    terminal: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-    txtfile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-    imgfile: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-    video: { isOpen: false, zIndex: INITIAL_Z_INDEX, data: null },
-
+    finder: { isOpen: false, isMinimized: false, zIndex: INITIAL_Z_INDEX, data: null },
+    contact: { isOpen: false, isMinimized: false, zIndex: INITIAL_Z_INDEX, data: null },
+    resume: { isOpen: false, isMinimized: false, zIndex: INITIAL_Z_INDEX, data: null },
+    safari: { isOpen: false, isMinimized: false, zIndex: INITIAL_Z_INDEX, data: null },
+    photos: { isOpen: false, isMinimized: false, zIndex: INITIAL_Z_INDEX, data: null },
+    terminal: { isOpen: false, isMinimized: false, zIndex: INITIAL_Z_INDEX, data: null },
+    txtfile: { isOpen: false, isMinimized: false, zIndex: INITIAL_Z_INDEX, data: null },
+    imgfile: { isOpen: false, isMinimized: false, zIndex: INITIAL_Z_INDEX, data: null },
+    video: { isOpen: false, isMinimized: false, zIndex: INITIAL_Z_INDEX, data: null },
+    aboutmac: { isOpen: false, isMinimized: false, zIndex: INITIAL_Z_INDEX, data: null },
 };
 
 export { INITIAL_Z_INDEX, WINDOW_CONFIG };
