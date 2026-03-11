@@ -30,6 +30,10 @@ export default defineConfig({
           dirname(fileURLToPath(import.meta.url)),
           "src/windows"
       ),
+      "#utils": resolve(
+          dirname(fileURLToPath(import.meta.url)),
+          "src/utils"
+      ),
     }
   }
 })
