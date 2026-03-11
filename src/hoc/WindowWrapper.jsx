@@ -16,6 +16,16 @@ const WindowWrapper = (Component, windowKey) => {
             if (!el) return;
             const [instance] = Draggable.create(el, {
                 onPress: () => focusWindow(windowKey),
+                onDragEnd: function () {
+                    const top = el.getBoundingClientRect().top;
+                    if (top < 50) {
+                        gsap.to(el, {
+                            y: "+=" + (50 - top),
+                            duration: 0.25,
+                            ease: "back.out(1.4)",
+                        });
+                    }
+                },
             });
             return () => instance.kill();
         }, []); // <-- vide : on crée le draggable qu'une seule fois
