@@ -21,7 +21,7 @@ const Text = () => {
             </div>
 
             {/* CONTENT */}
-            <div className="p-5 bg-white h-full overflow-auto space-y-6">
+            <div className="p-5 bg-white dark:bg-[#1e1e1e] h-full overflow-auto space-y-6">
                 {/* IMAGE */}
                 {image && (
                     <div className="w-full">
@@ -34,7 +34,7 @@ const Text = () => {
 
                 {/* DESCRIPTION */}
                 {description && (
-                    <div className="markdown text-gray-800">
+                    <div className="markdown text-gray-800 dark:text-gray-200">
                         <ReactMarkdown
                             remarkPlugins={[remarkGfm]}
                             components={{

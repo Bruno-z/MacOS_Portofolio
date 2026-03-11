@@ -49,7 +49,7 @@ const WindowWrapper = (Component, windowKey) => {
                 id={windowKey}
                 ref={ref}
                 style={{ zIndex }}
-                className="absolute bg-white shadow-lg rounded p-4 w-[600px] max-w-[90vw]"
+                className="absolute bg-white dark:bg-[#1e1e1e] dark:text-gray-100 shadow-lg rounded p-4 w-[600px] max-w-[90vw]"
             >
                 <Component {...props} data={windows[windowKey].data} />
             </section>

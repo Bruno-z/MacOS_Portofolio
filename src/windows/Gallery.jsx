@@ -19,9 +19,9 @@ const Gallery = () => {
             </div>
 
             {/* WINDOW (taille gérée par WindowStore) */}
-            <div className="bg-white flex flex-1 overflow-hidden rounded-xl min-h-[620px]">
+            <div className="bg-white dark:bg-[#1e1e1e] flex flex-1 overflow-hidden rounded-xl min-h-[620px]">
                 {/* SIDEBAR */}
-                <aside className="w-56 border-r px-3 py-4 shrink-0">
+                <aside className="w-56 border-r dark:border-gray-700 dark:bg-[#2d2d2d] px-3 py-4 shrink-0">
                     <p className="text-sm font-medium text-gray-400 mb-3 "></p>
                     <ul className="space-y-1">
                         {photosLinks.map(link => (
@@ -31,8 +31,8 @@ const Gallery = () => {
                                 className={clsx(
                                     "flex items-center gap-2 px-3 py-[6px] rounded-md cursor-pointer text-sm transition select-none",
                                     link.id === activeFolder.id
-                                        ? "bg-blue-100 text-blue-700 font-medium"
-                                        : "text-gray-700 hover:bg-gray-100"
+                                        ? "bg-blue-100 text-blue-700 font-medium dark:bg-blue-900 dark:text-blue-300"
+                                        : "text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
                                 )}
                             >
                                 <img
@@ -47,7 +47,7 @@ const Gallery = () => {
                 </aside>
 
                 {/* CONTENT */}
-                <section className="flex-1 overflow-auto px-6 py-4 min-h-[620px]">
+                <section className="flex-1 overflow-auto px-6 py-4 min-h-[620px] dark:bg-[#1e1e1e]">
                     {filteredGallery.length === 0 ? (
                         <p className="text-gray-400 text-center mt-10">Aucune photo disponible</p>
                     ) : (

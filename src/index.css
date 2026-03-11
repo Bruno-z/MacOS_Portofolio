@@ -2,6 +2,9 @@
 
 @import "tailwindcss";
 
+/* Dark mode activé par la classe .dark sur <html> */
+@variant dark (&:where(.dark, .dark *));
+
 html,
 body {
     width: 100dvw;
@@ -399,5 +402,205 @@ body {
                 }
             }
         }
+    }
+}
+
+/* ============================================================
+   DARK MODE
+   Activé par la classe .dark sur <html>
+   ============================================================ */
+.dark {
+    /* Navbar */
+    nav {
+        @apply bg-gray-900/70 text-gray-100;
+
+        time {
+            @apply text-gray-200;
+        }
+
+        ul p {
+            @apply text-gray-200;
+        }
+
+        p.font-bold {
+            @apply text-gray-100;
+        }
+    }
+
+    /* Header commun à toutes les fenêtres */
+    #window-header {
+        @apply bg-[#2d2d2d] border-gray-700 text-gray-300;
+
+        h2 {
+            @apply text-gray-200;
+        }
+    }
+
+    /* Icônes dans les fenêtres */
+    .icon {
+        @apply hover:bg-gray-700;
+    }
+
+    /* ── Safari ── */
+    #safari {
+        @apply bg-[#1e1e1e];
+
+        .search {
+            @apply bg-[#2d2d2d] border-gray-600;
+
+            input {
+                @apply text-gray-200 placeholder:text-gray-500;
+            }
+        }
+
+        .blog {
+            @apply bg-[#1e1e1e];
+
+            h2 {
+                @apply text-pink-400;
+            }
+
+            .blog-post {
+                .content {
+                    p {
+                        @apply text-gray-400;
+                    }
+
+                    h3 {
+                        @apply text-gray-200;
+                    }
+
+                    a {
+                        @apply text-blue-400;
+                    }
+                }
+            }
+        }
+    }
+
+    /* ── Terminal ── */
+    #terminal {
+        @apply bg-[#1a1a1a] text-gray-200;
+
+        h2 {
+            @apply text-gray-300;
+        }
+
+        .techstack {
+            .label p {
+                @apply text-gray-400;
+            }
+
+            .content {
+                @apply border-gray-700;
+
+                li {
+                    .check {
+                        @apply text-green-400;
+                    }
+
+                    h3 {
+                        @apply text-green-400;
+                    }
+
+                    p, span {
+                        @apply text-gray-300;
+                    }
+                }
+            }
+        }
+    }
+
+    /* ── Contact ── */
+    #contact {
+        @apply bg-[#1e1e1e];
+
+        h2 {
+            @apply text-gray-200;
+        }
+
+        h3 {
+            @apply text-white;
+        }
+
+        p {
+            @apply text-gray-300;
+        }
+    }
+
+    /* ── Photos / Gallery ── */
+    #photos {
+        @apply bg-[#1e1e1e];
+
+        .sidebar {
+            @apply bg-[#2d2d2d] border-gray-700;
+
+            h2 {
+                @apply text-gray-400;
+            }
+        }
+
+        section {
+            @apply bg-[#1e1e1e];
+        }
+    }
+
+    /* ── Resume ── */
+    #resume {
+        @apply bg-[#1e1e1e];
+    }
+
+    /* ── Finder ── */
+    #finder {
+        .sidebar {
+            @apply bg-[#2d2d2d] border-gray-700;
+
+            h3 {
+                @apply text-gray-400;
+            }
+
+            .active {
+                @apply bg-blue-900 text-blue-300;
+            }
+
+            .not-active {
+                @apply text-gray-300 hover:bg-gray-700;
+            }
+        }
+
+        .content {
+            @apply bg-[#1e1e1e];
+
+            li p {
+                @apply text-gray-200;
+            }
+        }
+    }
+
+    /* ── Text viewer ── */
+    #txtfile {
+        @apply bg-[#1e1e1e];
+
+        h2 {
+            @apply text-gray-200;
+        }
+    }
+
+    /* ── Image viewer ── */
+    #imgfile {
+        @apply bg-[#1e1e1e];
+
+        #window-header p {
+            @apply text-gray-300;
+        }
+
+        .preview {
+            @apply bg-[#2d2d2d];
+        }
+    }
+
+    /* ── Video ── */
+    #video {
+        @apply bg-[#1e1e1e] text-gray-200;
     }
 }
