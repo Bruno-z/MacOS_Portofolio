@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Bruno Zilio - Final Premium Signature</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #030303;
+            --surface: #0a0a0a;
+            --sidebar-bg: #0d0f12;
+            --accent: #d4af37;
+            --tech: #38bdf8;
+            --text-h: #ffffff;
+            --text-p: #94a3b8;
+            --border: rgba(255, 255, 255, 0.05);
+            --gradient: linear-gradient(135deg, #d4af37 0%, #38bdf8 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-p);
+            line-height: 1.5;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .cv-card {
+            width: 100%;
+            max-width: 1100px;
+            background: var(--surface);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            /* Larger sidebar */
+            box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.8);
+        }
+
+        /* sidebar */
+        .sidebar {
+            background-color: var(--sidebar-bg);
+            padding: 50px 40px;
+            /* More padding */
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid var(--border);
+        }
+
+        .photo-container {
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            margin: 0 auto 40px;
+            overflow: hidden;
+            border: 3px solid var(--accent);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        .photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        h3 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--text-h);
+            margin: 35px 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        h3::after {
+            content: "";
+            height: 1px;
+            background: var(--border);
+            flex-grow: 1;
+        }
+
+        .contact-item {
+            margin-bottom: 15px;
+            font-size: 0.85rem;
+        }
+
+        .contact-label {
+            display: block;
+            color: var(--accent);
+            font-size: 0.65rem;
+            font-weight: 700;
+            margin-bottom: 3px;
+            text-transform: uppercase;
+        }
+
+        .edu-item {
+            margin-bottom: 25px;
+        }
+
+        .edu-name {
+            font-weight: 600;
+            color: var(--text-h);
+            font-size: 1rem;
+            line-height: 1.3;
+        }
+
+        .edu-meta {
+            font-size: 0.85rem;
+            color: var(--accent);
+            margin-top: 5px;
+        }
+
+        .lang-item {
+            margin-bottom: 22px;
+        }
+
+        .lang-label {
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-h);
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .lang-val {
+            font-size: 0.8rem;
+            color: var(--tech);
+            opacity: 0.9;
+        }
+
+        .progress-bg {
+            height: 7px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient);
+            border-radius: 10px;
+        }
+
+        /* Grid for skills */
+        .skill-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .skill-box {
+            padding: 6px 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.75rem;
+            color: #ddd;
+            text-align: center;
+        }
+
+        .skill-full {
+            grid-column: span 2;
+        }
+
+        /* main content */
+        .main {
+            padding: 50px 60px;
+            background: radial-gradient(circle at top right, rgba(56, 189, 248, 0.04), transparent);
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.8rem;
+            color: var(--text-h);
+            line-height: 1.1;
+            margin-bottom: 15px;
+        }
+
+        .header .subtitle {
+            font-size: 1.6rem;
+            font-weight: 300;
+            color: var(--tech);
+            margin-bottom: 40px;
+            letter-spacing: 0.05em;
+        }
+
+        .intro {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 5px solid var(--accent);
+            font-size: 1.05rem;
+            color: #eee;
+            margin-bottom: 45px;
+            line-height: 1.7;
+        }
+
+        .hybrid-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .hybrid-card {
+            padding: 25px;
+            background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.04), transparent);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            border-left: 4px solid transparent;
+        }
+
+        .hybrid-card h4 {
+            color: var(--text-h);
+            margin-bottom: 12px;
+            font-size: 1.15rem;
+        }
+
+        .hybrid-card p {
+            font-size: 0.9rem;
+            opacity: 0.85;
+        }
+
+        .card-tech {
+            border-left-color: var(--tech);
+        }
+
+        .card-psy {
+            border-left-color: var(--accent);
+        }
+
+        .experience-title {
+            margin-top: 0;
+            margin-bottom: 35px;
+            font-size: 0.95rem;
+            color: var(--text-h);
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+        }
+
+        .exp-item {
+            margin-bottom: 45px;
+            padding-left: 25px;
+            border-left: 2px solid var(--border);
+            position: relative;
+        }
+
+        .exp-item::before {
+            content: "";
+            position: absolute;
+            left: -7px;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--tech);
+            box-shadow: 0 0 12px var(--tech);
+        }
+
+        .exp-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .company {
+            font-weight: 700;
+            color: var(--text-h);
+            font-size: 1.2rem;
+        }
+
+        .role {
+            color: var(--tech);
+            font-size: 1.05rem;
+            margin-top: 3px;
+            display: block;
+        }
+
+        .date {
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        .bullets {
+            list-style: none;
+            font-size: 0.95rem;
+        }
+
+        .bullets li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .bullets li::before {
+            content: "›";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 1.3rem;
+            top: -3px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 12px;
+            padding: 5px 14px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .tech-badge {
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--tech);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+
+        .autodidacte-badge {
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--accent);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            margin-left: 10px;
+        }
+
+        footer {
+            margin-top: auto;
+            font-size: 0.75rem;
+            opacity: 0.3;
+            text-align: center;
+            padding-top: 40px;
+        }
+
+        /* Print Specific Styles */
+        @media print {
+            @page {
+                size: A4;
+                margin: 0;
+            }
+
+            body {
+                padding: 0;
+                margin: 0;
+                background: var(--bg) !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .cv-card {
+                width: 210mm;
+                height: 297mm;
+                max-height: 297mm;
+                border: none;
+                border-radius: 0;
+                box-shadow: none;
+                margin: 0;
+                grid-template-columns: 280px 1fr;
+                /* Slimmer sidebar for print */
+                overflow: hidden;
+            }
+
+            .sidebar {
+                padding: 25px 20px;
+            }
+
+            .photo-container {
+                width: 140px;
+                height: 140px;
+                margin-bottom: 20px;
+            }
+
+            h3 {
+                margin: 20px 0 10px;
+                font-size: 0.7rem;
+            }
+
+            .edu-item {
+                margin-bottom: 15px;
+            }
+
+            .edu-name {
+                font-size: 0.9rem;
+            }
+
+            .skill-grid {
+                gap: 6px;
+            }
+
+            .skill-box {
+                padding: 4px 8px;
+                font-size: 0.65rem;
+            }
+
+            .main {
+                padding: 30px 35px;
+            }
+
+            .header h1 {
+                font-size: 2.8rem;
+                margin-bottom: 5px;
+            }
+
+            .header .subtitle {
+                font-size: 1.3rem;
+                margin-bottom: 20px;
+            }
+
+            .intro {
+                margin-bottom: 20px;
+                padding: 15px 20px;
+                font-size: 0.95rem;
+            }
+
+            .hybrid-section {
+                margin-bottom: 20px;
+                gap: 15px;
+            }
+
+            .hybrid-card {
+                padding: 15px;
+            }
+
+            .hybrid-card h4 {
+                font-size: 1rem;
+                margin-bottom: 5px;
+            }
+
+            .hybrid-card p {
+                font-size: 0.8rem;
+            }
+
+            .experience-title {
+                margin-bottom: 20px;
+                font-size: 0.85rem;
+            }
+
+            .exp-item {
+                margin-bottom: 20px;
+                padding-left: 20px;
+            }
+
+            .company {
+                font-size: 1.1rem;
+            }
+
+            .role {
+                font-size: 0.95rem;
+            }
+
+            .bullets {
+                font-size: 0.85rem;
+            }
+
+            .bullets li {
+                margin-bottom: 4px;
+            }
+
+            .badge {
+                margin-top: 8px;
+                padding: 3px 10px;
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cv-card">
+        <aside class="sidebar">
+            <div class="photo-container">
+                <img src="icons/bruno.png" alt="Bruno Zilio">
+            </div>
+
+            <h3>Contact</h3>
+            <div class="contact-item">
+                <span class="contact-label">Téléphone</span>
+                06 72 21 04 29
+            </div>
+            <div class="contact-item">
+                <span class="contact-label">Email</span>
+                bruno.zilio31@gmail.com
+            </div>
+            <div class="contact-item">
+                <span class="contact-label">Adresse</span>
+                31150 Bruguières
+            </div>
+            <div class="contact-item">
+                <span class="contact-label">Infos</span>
+                36 ans - Permis B
+            </div>
+            <div class="contact-item">
+                <span class="contact-label">Portfolio</span>
+                <a href="https://brunozilioportfolio.netlify.app/" target="_blank"
+                    style="color: var(--tech); text-decoration: none; font-weight: 500;">Mon Portfolio</a>
+            </div>
+
+            <h3>Éducation</h3>
+            <div class="edu-item">
+                <p class="edu-name">CDA (Bac+4)</p>
+                <p class="edu-meta">AFPA, 2021-2022</p>
+            </div>
+            <div class="edu-item">
+                <p class="edu-name">Dév Web & Mobile (Bac+2)</p>
+                <p class="edu-meta">ADRAR, 2019</p>
+            </div>
+            <div class="edu-item">
+                <p class="edu-name">Dév Android</p>
+                <p class="edu-meta">Wild Code School, 2017</p>
+            </div>
+            <div class="edu-item">
+                <p class="edu-name">Master 1 Neuropsychologie</p>
+                <p class="edu-meta">Univ. Toulouse, 2016</p>
+            </div>
+
+            <h3>Langues</h3>
+            <div class="lang-item">
+                <div class="lang-label">
+                    <span>Français</span>
+                    <span class="lang-val">Maternel</span>
+                </div>
+                <div class="progress-bg">
+                    <div class="progress-fill" style="width: 100%;"></div>
+                </div>
+            </div>
+            <div class="lang-item">
+                <div class="lang-label">
+                    <span>Anglais</span>
+                    <span class="lang-val">Courant (C1)</span>
+                </div>
+                <div class="progress-bg">
+                    <div class="progress-fill" style="width: 90%;"></div>
+                </div>
+            </div>
+
+            <h3>Compétences</h3>
+            <div class="skill-grid">
+                <div class="skill-box">Java</div>
+                <div class="skill-box">Spring Boot</div>
+                <div class="skill-box">Angular</div>
+                <div class="skill-box">React</div>
+                <div class="skill-box">Perl</div>
+                <div class="skill-box">PHP</div>
+                <div class="skill-box">TypeScript</div>
+                <div class="skill-box">JavaScript</div>
+                <div class="skill-box">PostgreSQL</div>
+                <div class="skill-box">MySQL</div>
+                <div class="skill-box">Docker</div>
+                <div class="skill-box">GitLab</div>
+                <div class="skill-box">WordPress</div>
+                <div class="skill-box">Magento</div>
+                <div class="skill-box">C#</div>
+                <div class="skill-box">Unity</div>
+
+                <div class="skill-box skill-full" style="border-color: var(--accent); color: var(--accent);">Prompt
+                    Engineering</div>
+                <div class="skill-box skill-full" style="border-color: var(--accent); color: var(--accent);">Agentic AI
+                    Skills</div>
+                <div class="skill-box skill-full" style="border-color: var(--accent); color: var(--accent);">AI Workflow
+                    Automation</div>
+            </div>
+
+            <footer>© Bruno Zilio 2026</footer>
+        </aside>
+
+        <main class="main">
+            <div class="header">
+                <h1>BRUNO ZILIO</h1>
+                <div class="subtitle">Concepteur Développeur Fullstack</div>
+            </div>
+
+            <div class="intro">
+                "Développeur full stack polyvalent (Java, Angular, Perl, React) ayant évolué dans des environnements
+                critiques pour Airbus et Orange. Jeune papa depuis 2025, j'ai consacré cette période à ma famille.
+                Aujourd'hui pleinement disponible, je mets à profit ma rigueur et ma capacité d'apprentissage en
+                autodidacte pour concevoir des architectures robustes et innovantes."
+            </div>
+
+            <div class="hybrid-section">
+                <div class="hybrid-card card-psy">
+                    <h4>Identité Neuro-Psy</h4>
+                    <p>Master 1 en Neuropsychologie. Apport d'une vision centrée sur l'humain et l'analyse fine des
+                        processus cognitifs dans le développement.</p>
+                </div>
+                <div class="hybrid-card card-tech">
+                    <h4>Expertise Tech</h4>
+                    <p>Architectures robustes et environnements complexes. Maîtrise des stacks modernes et de
+                        l'automatisation IA.</p>
+                </div>
+            </div>
+
+            <div class="experience">
+                <h3 class="experience-title">Expériences Professionnelles</h3>
+
+                <div class="exp-item">
+                    <div class="exp-title">
+                        <span class="company">AIRBUS / SII — Java</span>
+                        <span class="date">Fév. 2024 – Sept. 2024</span>
+                    </div>
+                    <span class="role">Backend Developer (Projet WOIS)</span>
+                    <ul class="bullets">
+                        <li>Pilotage du processus de commandes et de livraisons d'images satellitaires.</li>
+                        <li>Développement de services REST et refactoring de code pour optimiser l'architecture.</li>
+                        <li>Validation rigoureuse via Tests JUnit 5 & SoapUI.</li>
+                    </ul>
+                </div>
+
+                <div class="exp-item">
+                    <div class="exp-title">
+                        <span class="company">ORANGE / SII — Perl</span>
+                        <span class="date">Fév. 2023 – Janv. 2024</span>
+                    </div>
+                    <span class="role">Fullstack Developer & Support Performance</span>
+                    <ul class="bullets">
+                        <li>Maintenance évolutive du projet WASAC (Gestion équipements Grands Comptes).</li>
+                        <li>Analyse proactive des relevés Elastic & Centreon pour garantir la stabilité.</li>
+                        <li>Gestion agile via JIRA et GitLab.</li>
+                    </ul>
+                    <div class="badge tech-badge">Expertise RCA (Root Cause Analysis)</div>
+                </div>
+
+                <div class="exp-item">
+                    <div class="exp-title">
+                        <span class="company">AIRBUS / SII — Angular</span>
+                        <span class="date">Nov. 2022 – Fév. 2023</span>
+                    </div>
+                    <span class="role">Frontend Developer (Projet Ocean)</span>
+                    <ul class="bullets">
+                        <li>Modernisation de RangeDB et création de nouvelles fonctionnalités sur Ocean.</li>
+                        <li>Traitement du support et correction de bugs.</li>
+                        <li>Tests unitaires Karma / Harness (Couverture > 80%).</li>
+                    </ul>
+                </div>
+
+                <div class="exp-item" style="border-left-color: var(--accent);">
+                    <div class="exp-title">
+                        <span class="company">ARSEAA / Pôles Pousinies Bordeneuve</span>
+                        <span class="date">2020 - 2021</span>
+                    </div>
+                    <span class="role">Développeur Solution (VBA / Excel) — Projet Individuel</span>
+                    <ul class="bullets">
+                        <li><strong>Conception Intégrale</strong> : Logiciel de gestion des stocks entièrement imaginé
+                            et créé sur mon temps libre.</li>
+                        <li>Solution complète incluant bons de livraison, PDF et calculs de moyennes pondérées et des
+                            stocks.</li>
+                        <li>Outil pérenne, toujours utilisé par la structure pour ses gains de productivité majeurs.
+                        </li>
+                    </ul>
+                    <div class="badge autodidacte-badge">100% Autodidacte & Passion</div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>
+        var portfolioLink = document.querySelector('a[href*="brunozilioportfolio"]');
+        if (portfolioLink) {
+            portfolioLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.parent.postMessage({ type: 'portfolio-easter-egg' }, '*');
+            });
+        }
+    </script>
+</body>
+
+</html>

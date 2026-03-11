@@ -40,7 +40,7 @@ body {
     }
 
     nav {
-        @apply flex justify-between items-center bg-white/50 backdrop-blur-3xl p-2 px-5 select-none;
+        @apply flex justify-between items-center bg-white/50 backdrop-blur-3xl p-2 px-5 select-none relative z-[2000];
 
         div {
             @apply flex items-center max-sm:w-full max-sm:justify-center gap-5;
@@ -89,7 +89,7 @@ body {
 
 
     #dock {
-        @apply absolute bottom-5 left-1/2 -translate-x-1/2 z-50 select-none max-sm:hidden;
+        @apply absolute bottom-5 left-1/2 -translate-x-1/2 z-[2000] select-none max-sm:hidden;
 
         .dock-container {
             @apply bg-white/20 backdrop-blur-md justify-between rounded-2xl p-1.5 flex items-end gap-1.5;
@@ -195,7 +195,7 @@ body {
                     }
 
                     h3 {
-                        @apply font-semibold text-[#00A154] w-32 ms-5;
+                        @apply font-semibold w-32 ms-5;
                     }
 
                     ul {
@@ -307,7 +307,7 @@ body {
     }
 
     #resume {
-        @apply w-fit h-fit absolute top-16 left-7/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+        @apply !w-[min(92vw,1100px)] h-fit absolute top-16 left-7/12 shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
 
         #window-header {
             h2 {
@@ -503,7 +503,7 @@ body {
                         @apply text-green-400;
                     }
 
-                    p, span {
+                    p {
                         @apply text-gray-300;
                     }
                 }
@@ -603,4 +603,10 @@ body {
     #video {
         @apply bg-[#1e1e1e] text-gray-200;
     }
+}
+
+/* Vert du Terminal en dark mode — cible aussi les spans de renderLetters */
+.dark #terminal .techstack .content li h3,
+.dark #terminal .techstack .content li h3 span {
+    color: #4ade80;
 }
