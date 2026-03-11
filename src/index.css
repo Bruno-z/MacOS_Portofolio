@@ -425,6 +425,10 @@ body {
         p.font-bold {
             @apply text-gray-100;
         }
+
+        img.icon-hover {
+            filter: brightness(0) invert(1);
+        }
     }
 
     /* Header commun à toutes les fenêtres */
