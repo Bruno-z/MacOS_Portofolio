@@ -253,84 +253,110 @@ const photosLinks = [
 ];
 
 const gallery = [
+    // ── Jeux ─────────────────────────────────────────────────────────────
     {
         id: 1,
         img: "/images/doom.jpg",
-        folderId: 3, // Jeux
+        folderId: 3,
+        linkLabel: "Steam",
+        link: "https://store.steampowered.com/app/782330/DOOM_Eternal/",
+        trailer: "https://www.youtube.com/results?search_query=doom+eternal+official+launch+trailer",
     },
     {
         id: 2,
         img: "/images/diablo.jpg",
-        folderId: 3, // Jeux
+        folderId: 3,
+        linkLabel: "Battle.net",
+        link: "https://diablo4.blizzard.com/",
+        trailer: "https://www.youtube.com/results?search_query=diablo+4+official+cinematic+trailer",
     },
     {
         id: 3,
         img: "/images/myth.jpg",
-        folderId: 3, // Jeux
+        folderId: 3,
+        linkLabel: "Steam",
+        link: "https://store.steampowered.com/app/2358720/Black_Myth_Wukong/",
+        trailer: "https://www.youtube.com/results?search_query=black+myth+wukong+official+trailer",
     },
     {
         id: 4,
         img: "/images/league.jpg",
-        folderId: 3, // Jeux
+        folderId: 3,
+        linkLabel: "Jouer",
+        link: "https://www.leagueoflegends.com/",
+        trailer: "https://www.youtube.com/results?search_query=league+of+legends+2024+worlds+cinematic",
     },
     {
         id: 5,
         img: "/images/world.png",
-        folderId: 3, // Jeux
+        folderId: 3,
+        linkLabel: "Battle.net",
+        link: "https://worldofwarcraft.blizzard.com/",
+        trailer: "https://www.youtube.com/results?search_query=world+of+warcraft+midnight+cinematic+trailer",
     },
     {
         id: 6,
         img: "/images/exile.jpg",
-        folderId: 3, // Jeux
+        folderId: 3,
+        linkLabel: "Steam",
+        link: "https://store.steampowered.com/app/2694490/Path_of_Exile_2/",
+        trailer: "https://www.youtube.com/results?search_query=path+of+exile+2+official+trailer",
     },
     {
         id: 16,
         img: "/images/expedition.avif",
-        folderId: 3, // Jeux
+        folderId: 3,
+        linkLabel: "Steam",
+        link: "https://store.steampowered.com/app/1903340/Clair_Obscur_Expedition_33/",
+        trailer: "https://www.youtube.com/results?search_query=clair+obscur+expedition+33+official+trailer",
     },
+    // ── Musique ───────────────────────────────────────────────────────────
     {
         id: 7,
         img: "/images/brejcha.avif",
-        folderId: 2, //musique
+        folderId: 2,
+        link: "https://www.youtube.com/watch?v=vqz8c4ZP3Wg",
     },
     {
         id: 8,
         img: "/images/queen.jpg",
-        folderId: 2, //musique
+        folderId: 2,
+        link: "https://www.youtube.com/@queen",
     },
     {
         id: 9,
         img: "/images/zimmer.jpg",
-        folderId: 2, //musique
+        folderId: 2,
+        link: "https://www.youtube.com/results?search_query=hans+zimmer+official+channel",
     },
     {
         id: 10,
         img: "/images/linkin.jpg",
-        folderId: 2, //musique
+        folderId: 2,
+        link: "https://www.youtube.com/@linkinpark",
     },
     {
         id: 11,
         img: "/images/rammstein.jpg",
-        folderId: 2, //musique
+        folderId: 2,
+        link: "https://www.youtube.com/@rammsteinofficial",
     },
+    // ── Dessins ───────────────────────────────────────────────────────────
     {
         id: 12,
         img: "/images/dessin1.jpeg",
-        folderId: 4, //dessin
+        folderId: 4,
     },
     {
         id: 13,
         img: "/images/dessin2.jpeg",
-        folderId: 4, //dessin
+        folderId: 4,
     },
     {
         id: 14,
         img: "/images/dessin3.jpeg",
-        folderId: 4, //dessin
+        folderId: 4,
     },
-
-
-
 ];
 
 
