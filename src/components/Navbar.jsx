@@ -31,13 +31,13 @@ const Navbar = () => {
                 ))}
             </ul>
 
-            <button
-                onClick={toggleTheme}
+            <img
+                src="/icons/mode.svg"
+                alt="toggle dark mode"
                 title={isDark ? "Mode clair" : "Mode sombre"}
-                className="cursor-pointer p-1 rounded hover:bg-white/20 transition-colors"
-            >
-                <img src="/icons/mode.svg" alt="toggle dark mode" className="w-5 h-5"/>
-            </button>
+                onClick={toggleTheme}
+                className="icon-hover cursor-pointer"
+            />
 
             <time>{dayjs().format('ddd MMM D h:mm A')}</time>
         </div>

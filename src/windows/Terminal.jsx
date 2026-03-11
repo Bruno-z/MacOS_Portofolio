@@ -90,7 +90,7 @@ const Terminal = () => {
                             <Check className="check mt-1" size={18} />
 
                             {/* Catégorie animée lettre par lettre */}
-                            <h3 className="font-semibold whitespace-nowrap">{renderLetters(category)}</h3>
+                            <h3 className="font-semibold whitespace-nowrap dark:text-green-400">{renderLetters(category)}</h3>
 
                             {/* Technologies: mot par mot avec animation */}
                             <p className="flex flex-wrap gap-1">
