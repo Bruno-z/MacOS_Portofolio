@@ -10,10 +10,32 @@ body {
     width: 100dvw;
     overflow: hidden;
     height: 100dvh;
+}
+
+/* Fond de jour sur html uniquement — body transparent pour laisser html::after visible */
+html {
     background-image: url("/images/test.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+}
+
+/* Fond nuit — crossfade via opacity */
+html::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("/images/portfolio_night_download.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 0.7s ease;
+    z-index: -1;
+    pointer-events: none;
+}
+html.dark::after {
+    opacity: 1;
 }
 
 @theme {
@@ -412,10 +434,7 @@ body {
    Activé par la classe .dark sur <html>
    ============================================================ */
 .dark {
-    /* Fond nuit */
-    html, body {
-        background-image: url("/images/portfolio_night_download.png");
-    }
+    /* Fond nuit géré par html::after (crossfade) */
 
     /* Texte Welcome */
     #welcome p {
