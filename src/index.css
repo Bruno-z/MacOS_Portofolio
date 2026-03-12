@@ -412,11 +412,9 @@ body {
    Activé par la classe .dark sur <html>
    ============================================================ */
 .dark {
-    /* Fond assombri — overlay noir 50% sur l'image de fond */
+    /* Fond nuit */
     html, body {
-        background-image:
-            linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-            url("/images/test.jpg");
+        background-image: url("/images/portfolio_night_download.png");
     }
 
     /* Texte Welcome */

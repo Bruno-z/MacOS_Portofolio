@@ -1,16 +1,19 @@
 import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import gsap from "gsap";
+import useThemeStore from "#store/theme.js";
 
 const DesktopCat = () => {
     const catRef = useRef(null);
     const walkTween = useRef(null);
+    const { isDark } = useThemeStore();
 
     const walk = () => {
         const el = catRef.current;
         if (!el) return;
 
         const goRight = Math.random() > 0.5;
+        const night = useThemeStore.getState().isDark;
 
         gsap.set(el, {
             display: "block",
@@ -18,10 +21,10 @@ const DesktopCat = () => {
             scaleX: goRight ? 1 : -1,
         });
 
-        // Oscillation verticale (effet pas-de-marche)
+        // Oscillation verticale
         const bounce = gsap.to(el, {
-            y: -8,
-            duration: 0.3,
+            y: night ? -18 : -8,
+            duration: night ? 0.18 : 0.3,
             yoyo: true,
             repeat: -1,
             ease: "sine.inOut",
@@ -30,7 +33,7 @@ const DesktopCat = () => {
         // Traversée
         walkTween.current = gsap.to(el, {
             x: goRight ? window.innerWidth + 80 : -80,
-            duration: 7,
+            duration: night ? 5 : 7,
             ease: "none",
             onComplete: () => {
                 bounce.kill();
@@ -40,15 +43,11 @@ const DesktopCat = () => {
     };
 
     useEffect(() => {
-        // Première apparition rapide
         const firstTimer = setTimeout(walk, 10_000);
-
-        // Ensuite toutes les ~60s ±15s
         const interval = setInterval(() => {
             const jitter = (Math.random() - 0.5) * 30_000;
             setTimeout(walk, Math.max(0, jitter));
         }, 60_000);
-
         return () => {
             clearTimeout(firstTimer);
             clearInterval(interval);
@@ -60,9 +59,9 @@ const DesktopCat = () => {
         <div
             ref={catRef}
             className="fixed z-[9989] pointer-events-none select-none hidden"
-            style={{ bottom: "80px", fontSize: "2.5rem", lineHeight: 1 }}
+            style={{ bottom: isDark ? undefined : "80px", top: isDark ? "140px" : undefined, fontSize: "2.5rem", lineHeight: 1 }}
         >
-            🐱
+            {isDark ? "🦇" : "🐱"}
         </div>,
         document.body
     );
