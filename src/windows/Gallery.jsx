@@ -108,7 +108,7 @@ const Gallery = () => {
                 <WindowControls target="photos" />
             </div>
 
-            <div className="bg-white dark:bg-[#1e1e1e] flex flex-1 overflow-hidden rounded-xl min-h-[620px]">
+            <div className="bg-white dark:bg-[#1e1e1e] flex flex-1 overflow-hidden rounded-xl min-h-[min(620px,65vh)]">
                 {/* SIDEBAR */}
                 <aside className="w-56 border-r dark:border-gray-700 dark:bg-[#2d2d2d] px-3 py-4 shrink-0">
                     <p className="text-sm font-medium text-gray-400 mb-3"></p>
@@ -136,7 +136,7 @@ const Gallery = () => {
                 </aside>
 
                 {/* CONTENT */}
-                <section className="flex-1 overflow-auto px-6 py-4 min-h-[620px] dark:bg-[#1e1e1e]">
+                <section className="flex-1 overflow-auto px-6 py-4 min-h-[min(620px,65vh)] dark:bg-[#1e1e1e]">
                     {filteredGallery.length === 0 ? (
                         <p className="text-gray-400 text-center mt-10">Aucune photo disponible</p>
                     ) : activeFolder.id === 4 ? (

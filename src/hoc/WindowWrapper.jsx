@@ -43,8 +43,8 @@ const WindowWrapper = (Component, windowKey) => {
             const el = ref.current;
             if (!el || !isOpen) return;
 
-            // Centrer la fenêtre
-            el.style.top = `50%`;
+            // Centrer dans la zone disponible (sous la navbar de ~50px)
+            el.style.top = `calc(50% + 25px)`;
             el.style.left = `50%`;
             el.style.transform = `translate(-50%, -50%)`;
 
@@ -67,7 +67,7 @@ const WindowWrapper = (Component, windowKey) => {
                 id={windowKey}
                 ref={ref}
                 style={{ zIndex }}
-                className="absolute bg-white dark:bg-[#1e1e1e] dark:text-gray-100 shadow-lg rounded p-4 w-[600px] max-w-[90vw]"
+                className="absolute bg-white dark:bg-[#1e1e1e] dark:text-gray-100 shadow-lg rounded p-4 w-[600px] max-w-[90vw] max-h-[calc(100vh-70px)] overflow-y-auto"
             >
                 <Component {...props} data={windows[windowKey].data} />
             </section>
