@@ -15,7 +15,7 @@ const Navbar = () => {
 
     return <nav>
         <div>
-            <img src="/images/logo.svg" alt="logo" className="cursor-pointer" onClick={() => openWindow("aboutmac")}/>
+            <img src="/images/logo.svg" alt="logo" className="cursor-pointer dark:invert" onClick={() => openWindow("aboutmac")}/>
             <p className="font-bold cursor-pointer" onClick={() => openWindow("txtfile", locations.about.children[0])}>Zilio Bruno</p>
 
             <ul>
