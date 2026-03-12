@@ -10,8 +10,14 @@ import useMCStore from "#store/missioncontrol.js";
 const proWorkFolder = locations.work.children.find(
     (item) => item.name === "Mon travail professionnel"
 );
+const personalFolder = locations.work.children.find(
+    (item) => item.name === "Mes projets personnels"
+);
 
-const projects = proWorkFolder?.children ?? [];
+const projects = [
+    ...(proWorkFolder?.children ?? []),
+    ...(personalFolder?.children?.filter((item) => item.showOnDesktop) ?? []),
+];
 
 const Home = () => {
 
@@ -85,7 +91,7 @@ const Home = () => {
                         key={project.id}
                         className={clsx(
                             "folder absolute flex flex-col items-center gap-1 cursor-pointer select-none",
-                            project.position
+                            project.desktopPosition ?? project.position
                         )}
                         onClick={() => handleOpenProjectFinder(project)}
                     >

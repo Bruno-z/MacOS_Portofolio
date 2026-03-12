@@ -2,6 +2,9 @@ import {Navbar, Welcome, Dock, Home, LockScreen, Spotlight, MobileOverlay} from 
 import MissionControl from "#components/MissionControl.jsx";
 import CursorTrail from "#components/CursorTrail.jsx";
 import PortfolioEasterEgg from "#components/PortfolioEasterEgg.jsx";
+import ProjectOpener from "#components/ProjectOpener.jsx";
+import Screensaver from "#components/Screensaver.jsx";
+import DesktopCat from "#components/DesktopCat.jsx";
 import { useState } from "react"
 import  { Draggable} from "gsap/Draggable";
 import {Safari, Terminal, Resume, Finder, Text,ImageWindowContent, Contact, Gallery, Video, AboutMac} from "#windows/index.js";
@@ -37,6 +40,9 @@ const App = () => {
                <MissionControl/>
                <CursorTrail/>
                <PortfolioEasterEgg/>
+               <ProjectOpener/>
+               <Screensaver/>
+               <DesktopCat/>
            </main>
         </div>
     )

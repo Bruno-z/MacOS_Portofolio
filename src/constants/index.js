@@ -196,6 +196,14 @@ const techStack = [
             "Docker"
         ],
     },
+    {
+        category: "AI & Prompt Eng.",
+        items: [
+            "Prompt Engineering",
+            "Agentic AI Skills",
+            "AI Workflow Automation"
+        ],
+    },
 ];
 
 
@@ -708,6 +716,95 @@ Vidéo de démonstration du logiciel VBA développé pour le Pôle Pousinies Bor
             position: "top-10 left-40",
             windowPosition: "top-[20vh] left-10",
             children: [
+                {
+                    id: 23,
+                    name: "JOURNEO",
+                    icon: "/images/folder.png",
+                    kind: "folder",
+                    position: "top-5 left-5",
+                    desktopPosition: "top-10 left-80",
+                    showOnDesktop: true,
+                    children: [
+                        {
+                            id: 4,
+                            name: "Dépôt GitHub",
+                            icon: "/icons/github.svg",
+                            kind: "file",
+                            fileType: "url",
+                            position: "top-40 left-40",
+                            href: "https://github.com/Bruno-z/Journeo",
+                        },
+                        {
+                            id: 5,
+                            name: "Description de JOURNEO.txt",
+                            icon: "/images/txt.png",
+                            kind: "file",
+                            fileType: "txt",
+                            position: "top-0 left-60",
+                            description: `# JOURNEO
+
+### Application web de guides de voyage
+
+Plateforme permettant de créer, partager et consulter des **guides de voyage interactifs**. Les utilisateurs accèdent aux guides auxquels ils sont invités ; les administrateurs gèrent l'intégralité du contenu et des utilisateurs.
+
+---
+
+### Fonctionnalités
+
+- 🔐 Authentification JWT — login / register avec prénom + nom
+- 👥 Contrôle d'accès par rôle — **ADMIN** / **USER**
+- 📖 CRUD complet guides et activités *(admin)*
+- 🖼️ Upload de photos de couverture pour les guides
+- 🌍 Couverture automatique via l'**API Wikipedia** *(toute ville du monde)*
+- 💬 Commentaires sur les guides
+- 📍 Géolocalisation des activités
+- 📱 Interface responsive avec sidebar mobile
+- 📄 Documentation API via **Swagger UI**`,
+                        },
+                        {
+                            id: 6,
+                            name: "Technologies de JOURNEO.txt",
+                            icon: "/images/txt.png",
+                            kind: "file",
+                            fileType: "txt",
+                            position: "top-5 left-5",
+                            description: `# Stack technique — JOURNEO
+
+---
+
+🎨 **Frontend**
+Angular 21 · Standalone components · Signals · OnPush
+
+⚙️ **Backend**
+Spring Boot 3.5 · Spring Security · JWT
+
+🗄️ **Base de données**
+PostgreSQL 15 *(prod / Docker)* · H2 *(tests)*
+
+🔄 **Migrations**
+Flyway 10
+
+🐳 **Conteneurs**
+Docker · Docker Compose
+
+🧪 **Tests backend**
+JUnit 5 · Mockito — *205 tests*
+
+🧪 **Tests frontend**
+Vitest 4 · Angular Testing Library`,
+                        },
+                        {
+                            id: 7,
+                            name: "Démo de JOURNEO",
+                            kind: "file",
+                            fileType: "video",
+                            position: "top-36 left-20",
+                            videoUrl: "https://youtu.be/sLoWNIA-4g4",
+                            icon: "/images/journeoThumb.jpg",
+                            description: `Vidéo de démonstration de l'application JOURNEO.`,
+                        },
+                    ],
+                },
                 {
                     id: 22,
                     name: "Site hommage à Arcane",

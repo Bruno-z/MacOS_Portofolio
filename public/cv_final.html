@@ -46,7 +46,6 @@
             overflow: hidden;
             display: grid;
             grid-template-columns: 380px 1fr;
-            /* Larger sidebar */
             box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.8);
         }
 
@@ -54,7 +53,6 @@
         .sidebar {
             background-color: var(--sidebar-bg);
             padding: 50px 40px;
-            /* More padding */
             display: flex;
             flex-direction: column;
             border-right: 1px solid var(--border);
@@ -155,6 +153,8 @@
             height: 100%;
             background: var(--gradient);
             border-radius: 10px;
+            width: 0;
+            transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         /* Grid for skills */
@@ -172,6 +172,17 @@
             font-size: 0.75rem;
             color: #ddd;
             text-align: center;
+            transition: transform 0.2s ease, background 0.2s ease,
+                        border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+            cursor: default;
+        }
+
+        .skill-box:hover {
+            transform: scale(1.1) translateY(-4px);
+            background: rgba(34, 197, 94, 0.15);
+            border-color: rgba(34, 197, 94, 0.55);
+            color: #4ade80;
+            box-shadow: 0 6px 20px rgba(34, 197, 94, 0.2);
         }
 
         .skill-full {
@@ -350,8 +361,98 @@
             padding-top: 40px;
         }
 
+        /* ── OVERLAYS EXPÉRIENCES ───────────────────────────────── */
+
+        .exp-overlay {
+            position: absolute;
+            top: 0; bottom: 0; right: 0;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.72);
+            backdrop-filter: blur(3px);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .exp-item:hover .exp-overlay { opacity: 1; }
+
+        .exp-overlay-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.12;
+        }
+
+        .exp-overlay-btn {
+            position: relative;
+            z-index: 1;
+            background: rgba(212, 175, 55, 0.18);
+            border: 1px solid rgba(212, 175, 55, 0.6);
+            color: #d4af37;
+            padding: 10px 28px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Outfit', sans-serif;
+            transition: background 0.2s;
+        }
+
+        .exp-overlay-btn:hover { background: rgba(212, 175, 55, 0.35); }
+
+        /* ── ANIMATIONS ─────────────────────────────────────────── */
+
+        @keyframes slideFromLeft {
+            from { opacity: 0; transform: translateX(-60px); }
+            to   { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes slideFromRight {
+            from { opacity: 0; transform: translateX(60px); }
+            to   { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(28px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.82); }
+            to   { opacity: 1; transform: scale(1); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+
+        .anim-slide-left  { animation: slideFromLeft  0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
+        .anim-slide-right { animation: slideFromRight 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
+        .anim-slide-up    { animation: slideUp        0.6s cubic-bezier(0.22, 1, 0.36, 1) both; }
+        .anim-scale-in    { animation: scaleIn        0.55s cubic-bezier(0.22, 1, 0.36, 1) both; }
+        .anim-fade        { animation: fadeIn         0.6s ease both; }
+
         /* Print Specific Styles */
         @media print {
+            /* Désactiver toutes les animations pour un rendu PDF propre */
+            * {
+                animation: none !important;
+                transition: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+
+            .exp-overlay { display: none !important; }
+            .skill-box:hover { transform: none; background: rgba(255,255,255,0.03); border-color: var(--border); color: #ddd; box-shadow: none; }
+
+            .progress-fill {
+                width: var(--print-width) !important;
+            }
+
             @page {
                 size: A4;
                 margin: 0;
@@ -374,7 +475,6 @@
                 box-shadow: none;
                 margin: 0;
                 grid-template-columns: 280px 1fr;
-                /* Slimmer sidebar for print */
                 overflow: hidden;
             }
 
@@ -485,109 +585,105 @@
 
 <body>
     <div class="cv-card">
-        <aside class="sidebar">
-            <div class="photo-container">
+        <aside class="sidebar anim-slide-left">
+            <div class="photo-container anim-scale-in" style="animation-delay: 0.25s">
                 <img src="icons/bruno.png" alt="Bruno Zilio">
             </div>
 
             <h3>Contact</h3>
-            <div class="contact-item">
+            <div class="contact-item anim-slide-up" style="animation-delay: 0.4s">
                 <span class="contact-label">Téléphone</span>
                 06 72 21 04 29
             </div>
-            <div class="contact-item">
+            <div class="contact-item anim-slide-up" style="animation-delay: 0.48s">
                 <span class="contact-label">Email</span>
                 bruno.zilio31@gmail.com
             </div>
-            <div class="contact-item">
+            <div class="contact-item anim-slide-up" style="animation-delay: 0.56s">
                 <span class="contact-label">Adresse</span>
                 31150 Bruguières
             </div>
-            <div class="contact-item">
+            <div class="contact-item anim-slide-up" style="animation-delay: 0.64s">
                 <span class="contact-label">Infos</span>
                 36 ans - Permis B
             </div>
-            <div class="contact-item">
+            <div class="contact-item anim-slide-up" style="animation-delay: 0.72s">
                 <span class="contact-label">Portfolio</span>
                 <a href="https://brunozilioportfolio.netlify.app/" target="_blank"
                     style="color: var(--tech); text-decoration: none; font-weight: 500;">Mon Portfolio</a>
             </div>
 
             <h3>Éducation</h3>
-            <div class="edu-item">
+            <div class="edu-item anim-slide-up" style="animation-delay: 0.5s">
                 <p class="edu-name">CDA (Bac+4)</p>
                 <p class="edu-meta">AFPA, 2021-2022</p>
             </div>
-            <div class="edu-item">
+            <div class="edu-item anim-slide-up" style="animation-delay: 0.58s">
                 <p class="edu-name">Dév Web & Mobile (Bac+2)</p>
                 <p class="edu-meta">ADRAR, 2019</p>
             </div>
-            <div class="edu-item">
+            <div class="edu-item anim-slide-up" style="animation-delay: 0.66s">
                 <p class="edu-name">Dév Android</p>
                 <p class="edu-meta">Wild Code School, 2017</p>
             </div>
-            <div class="edu-item">
+            <div class="edu-item anim-slide-up" style="animation-delay: 0.74s">
                 <p class="edu-name">Master 1 Neuropsychologie</p>
                 <p class="edu-meta">Univ. Toulouse, 2016</p>
             </div>
 
             <h3>Langues</h3>
-            <div class="lang-item">
+            <div class="lang-item anim-fade" style="animation-delay: 0.6s">
                 <div class="lang-label">
                     <span>Français</span>
                     <span class="lang-val">Maternel</span>
                 </div>
                 <div class="progress-bg">
-                    <div class="progress-fill" style="width: 100%;"></div>
+                    <div class="progress-fill" data-width="100%"></div>
                 </div>
             </div>
-            <div class="lang-item">
+            <div class="lang-item anim-fade" style="animation-delay: 0.7s">
                 <div class="lang-label">
                     <span>Anglais</span>
                     <span class="lang-val">Courant (C1)</span>
                 </div>
                 <div class="progress-bg">
-                    <div class="progress-fill" style="width: 90%;"></div>
+                    <div class="progress-fill" data-width="90%"></div>
                 </div>
             </div>
 
             <h3>Compétences</h3>
             <div class="skill-grid">
-                <div class="skill-box">Java</div>
-                <div class="skill-box">Spring Boot</div>
-                <div class="skill-box">Angular</div>
-                <div class="skill-box">React</div>
-                <div class="skill-box">Perl</div>
-                <div class="skill-box">PHP</div>
-                <div class="skill-box">TypeScript</div>
-                <div class="skill-box">JavaScript</div>
-                <div class="skill-box">PostgreSQL</div>
-                <div class="skill-box">MySQL</div>
-                <div class="skill-box">Docker</div>
-                <div class="skill-box">GitLab</div>
-                <div class="skill-box">WordPress</div>
-                <div class="skill-box">Magento</div>
-                <div class="skill-box">C#</div>
-                <div class="skill-box">Unity</div>
-
-                <div class="skill-box skill-full" style="border-color: var(--accent); color: var(--accent);">Prompt
-                    Engineering</div>
-                <div class="skill-box skill-full" style="border-color: var(--accent); color: var(--accent);">Agentic AI
-                    Skills</div>
-                <div class="skill-box skill-full" style="border-color: var(--accent); color: var(--accent);">AI Workflow
-                    Automation</div>
+                <div class="skill-box anim-scale-in" style="animation-delay: 0.75s">Java</div>
+                <div class="skill-box anim-scale-in" style="animation-delay: 0.78s">Spring Boot</div>
+                <div class="skill-box anim-scale-in" style="animation-delay: 0.81s">Angular</div>
+                <div class="skill-box anim-scale-in" style="animation-delay: 0.84s">React</div>
+                <div class="skill-box anim-scale-in" style="animation-delay: 0.87s">Perl</div>
+                <div class="skill-box anim-scale-in" style="animation-delay: 0.90s">PHP</div>
+                <div class="skill-box anim-scale-in" style="animation-delay: 0.93s">TypeScript</div>
+                <div class="skill-box anim-scale-in" style="animation-delay: 0.96s">JavaScript</div>
+                <div class="skill-box anim-scale-in" style="animation-delay: 0.99s">PostgreSQL</div>
+                <div class="skill-box anim-scale-in" style="animation-delay: 1.02s">MySQL</div>
+                <div class="skill-box anim-scale-in" style="animation-delay: 1.05s">Docker</div>
+                <div class="skill-box anim-scale-in" style="animation-delay: 1.08s">GitLab</div>
+                <div class="skill-box anim-scale-in" style="animation-delay: 1.11s">WordPress</div>
+                <div class="skill-box anim-scale-in" style="animation-delay: 1.14s">Magento</div>
+                <div class="skill-box anim-scale-in" style="animation-delay: 1.17s">C#</div>
+                <div class="skill-box anim-scale-in" style="animation-delay: 1.20s">Unity</div>
+                <div class="skill-box skill-full anim-scale-in" style="border-color: var(--accent); color: var(--accent); animation-delay: 1.23s">Prompt Engineering</div>
+                <div class="skill-box skill-full anim-scale-in" style="border-color: var(--accent); color: var(--accent); animation-delay: 1.26s">Agentic AI Skills</div>
+                <div class="skill-box skill-full anim-scale-in" style="border-color: var(--accent); color: var(--accent); animation-delay: 1.29s">AI Workflow Automation</div>
             </div>
 
             <footer>© Bruno Zilio 2026</footer>
         </aside>
 
-        <main class="main">
+        <main class="main anim-slide-right" style="animation-delay: 0.1s">
             <div class="header">
-                <h1>BRUNO ZILIO</h1>
-                <div class="subtitle">Concepteur Développeur Fullstack</div>
+                <h1 class="anim-slide-up" style="animation-delay: 0.35s">BRUNO ZILIO</h1>
+                <div class="subtitle anim-slide-up" style="animation-delay: 0.5s">Concepteur Développeur Fullstack</div>
             </div>
 
-            <div class="intro">
+            <div class="intro anim-slide-up" style="animation-delay: 0.6s">
                 "Développeur full stack polyvalent (Java, Angular, Perl, React) ayant évolué dans des environnements
                 critiques pour Airbus et Orange. Jeune papa depuis 2025, j'ai consacré cette période à ma famille.
                 Aujourd'hui pleinement disponible, je mets à profit ma rigueur et ma capacité d'apprentissage en
@@ -595,12 +691,12 @@
             </div>
 
             <div class="hybrid-section">
-                <div class="hybrid-card card-psy">
+                <div class="hybrid-card card-psy anim-scale-in" style="animation-delay: 0.7s">
                     <h4>Identité Neuro-Psy</h4>
                     <p>Master 1 en Neuropsychologie. Apport d'une vision centrée sur l'humain et l'analyse fine des
                         processus cognitifs dans le développement.</p>
                 </div>
-                <div class="hybrid-card card-tech">
+                <div class="hybrid-card card-tech anim-scale-in" style="animation-delay: 0.82s">
                     <h4>Expertise Tech</h4>
                     <p>Architectures robustes et environnements complexes. Maîtrise des stacks modernes et de
                         l'automatisation IA.</p>
@@ -608,9 +704,9 @@
             </div>
 
             <div class="experience">
-                <h3 class="experience-title">Expériences Professionnelles</h3>
+                <h3 class="experience-title anim-fade" style="animation-delay: 0.75s">Expériences Professionnelles</h3>
 
-                <div class="exp-item">
+                <div class="exp-item anim-slide-up" style="animation-delay: 0.8s">
                     <div class="exp-title">
                         <span class="company">AIRBUS / SII — Java</span>
                         <span class="date">Fév. 2024 – Sept. 2024</span>
@@ -621,9 +717,13 @@
                         <li>Développement de services REST et refactoring de code pour optimiser l'architecture.</li>
                         <li>Validation rigoureuse via Tests JUnit 5 & SoapUI.</li>
                     </ul>
+                    <div class="exp-overlay" onclick="openProject(5)">
+                        <img src="/images/wois.png" alt="" class="exp-overlay-bg">
+                        <button class="exp-overlay-btn">Voir le projet →</button>
+                    </div>
                 </div>
 
-                <div class="exp-item">
+                <div class="exp-item anim-slide-up" style="animation-delay: 0.95s">
                     <div class="exp-title">
                         <span class="company">ORANGE / SII — Perl</span>
                         <span class="date">Fév. 2023 – Janv. 2024</span>
@@ -635,9 +735,13 @@
                         <li>Gestion agile via JIRA et GitLab.</li>
                     </ul>
                     <div class="badge tech-badge">Expertise RCA (Root Cause Analysis)</div>
+                    <div class="exp-overlay" onclick="openProject(6)">
+                        <img src="/images/wasac_1.jpeg" alt="" class="exp-overlay-bg">
+                        <button class="exp-overlay-btn">Voir le projet →</button>
+                    </div>
                 </div>
 
-                <div class="exp-item">
+                <div class="exp-item anim-slide-up" style="animation-delay: 1.1s">
                     <div class="exp-title">
                         <span class="company">AIRBUS / SII — Angular</span>
                         <span class="date">Nov. 2022 – Fév. 2023</span>
@@ -648,9 +752,12 @@
                         <li>Traitement du support et correction de bugs.</li>
                         <li>Tests unitaires Karma / Harness (Couverture > 80%).</li>
                     </ul>
+                    <div class="exp-overlay" onclick="openProject(7)">
+                        <button class="exp-overlay-btn">Voir le projet →</button>
+                    </div>
                 </div>
 
-                <div class="exp-item" style="border-left-color: var(--accent);">
+                <div class="exp-item anim-slide-up" style="border-left-color: var(--accent); animation-delay: 1.25s">
                     <div class="exp-title">
                         <span class="company">ARSEAA / Pôles Pousinies Bordeneuve</span>
                         <span class="date">2020 - 2021</span>
@@ -665,11 +772,32 @@
                         </li>
                     </ul>
                     <div class="badge autodidacte-badge">100% Autodidacte & Passion</div>
+                    <div class="exp-overlay" onclick="openProject(8)">
+                        <img src="/images/thumbnailVBA.png" alt="" class="exp-overlay-bg">
+                        <button class="exp-overlay-btn">Voir le projet →</button>
+                    </div>
                 </div>
             </div>
         </main>
     </div>
     <script>
+        // Ouvrir le projet dans le Finder React
+        function openProject(projectId) {
+            window.parent.postMessage({ type: 'open-project', projectId: projectId }, '*');
+        }
+
+        // Progress bars : animer depuis 0 vers la valeur cible
+        window.addEventListener('load', function() {
+            var fills = document.querySelectorAll('.progress-fill[data-width]');
+            fills.forEach(function(fill) {
+                var target = fill.getAttribute('data-width');
+                setTimeout(function() {
+                    fill.style.width = target;
+                }, 800);
+            });
+        });
+
+        // Easter egg : portfolio link
         var portfolioLink = document.querySelector('a[href*="brunozilioportfolio"]');
         if (portfolioLink) {
             portfolioLink.addEventListener('click', function(e) {

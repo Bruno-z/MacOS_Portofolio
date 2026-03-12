@@ -38,8 +38,13 @@ const Text = () => {
                         <ReactMarkdown
                             remarkPlugins={[remarkGfm]}
                             components={{
-                                p: ({ node, ...props }) => <p className="mb-4" {...props} />,
+                                h1: ({ node, ...props }) => <h1 className="text-xl font-bold mb-4 text-gray-900 dark:text-gray-100" {...props} />,
+                                h2: ({ node, ...props }) => <h2 className="text-lg font-bold mb-3 text-gray-800 dark:text-gray-200" {...props} />,
+                                h3: ({ node, ...props }) => <h3 className="text-base font-semibold mb-2 text-gray-700 dark:text-gray-300" {...props} />,
+                                hr: ({ node, ...props }) => <hr className="my-4 border-gray-200 dark:border-gray-600" {...props} />,
+                                p: ({ node, ...props }) => <p className="mb-4 leading-relaxed" {...props} />,
                                 li: ({ node, ...props }) => <li className="ml-6 mb-2 list-disc" {...props} />,
+                                strong: ({ node, ...props }) => <strong className="font-semibold text-gray-900 dark:text-gray-100" {...props} />,
                             }}
                         >
                             {description}

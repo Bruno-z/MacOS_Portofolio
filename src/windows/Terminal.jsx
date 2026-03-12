@@ -15,6 +15,28 @@ const renderLetters = (text) => {
     ));
 };
 
+const playKeyboard = () => {
+    const ctx = new AudioContext();
+    const totalDuration = 1.5;
+    const clickCount = 25;
+
+    for (let i = 0; i < clickCount; i++) {
+        const when = ctx.currentTime + (i / clickCount) * totalDuration * (0.9 + Math.random() * 0.2);
+        const osc = ctx.createOscillator();
+        const g = ctx.createGain();
+        osc.type = "triangle";
+        osc.frequency.value = 600 + Math.random() * 300;
+        g.gain.setValueAtTime(0.07, when);
+        g.gain.exponentialRampToValueAtTime(0.0001, when + 0.035);
+        osc.connect(g);
+        g.connect(ctx.destination);
+        osc.start(when);
+        osc.stop(when + 0.04);
+    }
+
+    setTimeout(() => ctx.close(), (totalDuration + 0.2) * 1000);
+};
+
 const Terminal = () => {
     const listRef = useRef([]);
     const { windows } = useWindowStore();
@@ -22,6 +44,7 @@ const Terminal = () => {
 
     useEffect(() => {
         if (!isOpen) return; // ne rien faire si la fenêtre est fermée
+        playKeyboard();
 
         listRef.current.forEach((el, idx) => {
             if (!el) return;

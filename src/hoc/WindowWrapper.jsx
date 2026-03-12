@@ -17,13 +17,21 @@ const WindowWrapper = (Component, windowKey) => {
             const [instance] = Draggable.create(el, {
                 onPress: () => focusWindow(windowKey),
                 onDragEnd: function () {
-                    const top = el.getBoundingClientRect().top;
-                    if (top < 50) {
-                        gsap.to(el, {
-                            y: "+=" + (50 - top),
-                            duration: 0.25,
-                            ease: "back.out(1.4)",
-                        });
+                    const rect = el.getBoundingClientRect();
+                    const corrections = {};
+
+                    // Bord haut (sous la navbar)
+                    if (rect.top < 50) corrections.y = "+=" + (50 - rect.top);
+                    // Bord bas (garder au moins 60px visible)
+                    else if (rect.top > window.innerHeight - 60) corrections.y = "-=" + (rect.top - (window.innerHeight - 60));
+
+                    // Bord droit (garder au moins 80px visible)
+                    if (rect.right < 80) corrections.x = "+=" + (80 - rect.right);
+                    // Bord gauche (garder au moins 80px visible)
+                    else if (rect.left > window.innerWidth - 80) corrections.x = "-=" + (rect.left - (window.innerWidth - 80));
+
+                    if (corrections.x || corrections.y) {
+                        gsap.to(el, { ...corrections, duration: 0.25, ease: "back.out(1.4)" });
                     }
                 },
             });
