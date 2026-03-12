@@ -5,7 +5,7 @@ import useWindowStore from "#store/window.js";
 import useThemeStore from "#store/theme.js";
 import useSpotlightStore from "#store/spotlight.js";
 import useSoundStore from "#store/sound.js";
-import { Volume2, VolumeX } from "lucide-react";
+import { Volume2, VolumeX, Moon, Sun } from "lucide-react";
 
 const Navbar = () => {
     const { openWindow } = useWindowStore();
@@ -46,13 +46,13 @@ const Navbar = () => {
                 {isMuted ? <VolumeX size={15} /> : <Volume2 size={15} />}
             </span>
 
-            <img
-                src="/icons/mode.svg"
-                alt="toggle dark mode"
-                title={isDark ? "Mode clair" : "Mode sombre"}
+            <span
                 onClick={toggleTheme}
-                className="icon-hover cursor-pointer"
-            />
+                title={isDark ? "Mode clair" : "Mode sombre"}
+                className="icon cursor-pointer flex items-center"
+            >
+                {isDark ? <Sun size={15} /> : <Moon size={15} />}
+            </span>
 
             <time>{dayjs().format('ddd MMM D h:mm A')}</time>
         </div>

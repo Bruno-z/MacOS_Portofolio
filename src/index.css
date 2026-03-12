@@ -412,6 +412,21 @@ body {
    Activé par la classe .dark sur <html>
    ============================================================ */
 .dark {
+    /* Fond assombri — overlay noir 50% sur l'image de fond */
+    html, body {
+        background-image:
+            linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+            url("/images/test.jpg");
+    }
+
+    /* Texte Welcome */
+    #welcome p {
+        color: #a78bfa;
+    }
+    #welcome h1 {
+        color: #ffffff;
+    }
+
     /* Navbar */
     nav {
         @apply bg-gray-900/70 text-gray-100;
