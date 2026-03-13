@@ -1,8 +1,8 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Search } from "lucide-react";
 import useSpotlightStore from "#store/spotlight.js";
 import useWindowStore from "#store/window.js";
-import { techStack, dockApps, locations } from "#constants";
+import { techStack, dockApps, locations, blogPosts, socials } from "#constants";
 
 // Build the search index once
 const buildIndex = () => {
@@ -30,6 +30,30 @@ const buildIndex = () => {
         subtitle: "Voir mon curriculum vitae",
         icon: "/icons/dock/finder.png",
         windowKey: "resume",
+    });
+
+    // Blog posts / projects
+    blogPosts.forEach((post) => {
+        entries.push({
+            id: `post-${post.id}`,
+            category: "Articles & Projets",
+            label: post.title,
+            subtitle: post.date,
+            icon: "/icons/dock/safari.png",
+            windowKey: "safari",
+        });
+    });
+
+    // Socials
+    socials.forEach((s) => {
+        entries.push({
+            id: `social-${s.id}`,
+            category: "Contact",
+            label: s.text,
+            subtitle: s.link,
+            icon: s.icon,
+            url: s.link,
+        });
     });
 
     // Skills from techStack
@@ -73,8 +97,9 @@ const Spotlight = () => {
     const { isOpen, query, close, setQuery } = useSpotlightStore();
     const { openWindow } = useWindowStore();
     const inputRef = useRef(null);
+    const [selectedIndex, setSelectedIndex] = useState(-1);
 
-    // Keyboard shortcuts
+    // Keyboard shortcuts (open/close)
     useEffect(() => {
         const handler = (e) => {
             if ((e.metaKey || e.ctrlKey) && e.code === "Space") {
@@ -91,8 +116,16 @@ const Spotlight = () => {
 
     // Focus input when opened
     useEffect(() => {
-        if (isOpen) setTimeout(() => inputRef.current?.focus(), 50);
+        if (isOpen) {
+            setTimeout(() => inputRef.current?.focus(), 50);
+            setSelectedIndex(-1);
+        }
     }, [isOpen]);
+
+    // Reset selection when query changes
+    useEffect(() => {
+        setSelectedIndex(-1);
+    }, [query]);
 
     if (!isOpen) return null;
 
@@ -113,7 +146,25 @@ const Spotlight = () => {
 
     const handleSelect = (entry) => {
         close();
-        openWindow(entry.windowKey);
+        if (entry.url) {
+            window.open(entry.url, "_blank", "noopener,noreferrer");
+        } else {
+            openWindow(entry.windowKey);
+        }
+    };
+
+    const handleKeyDown = (e) => {
+        if (filtered.length === 0) return;
+        if (e.key === "ArrowDown") {
+            e.preventDefault();
+            setSelectedIndex((i) => Math.min(i + 1, filtered.length - 1));
+        } else if (e.key === "ArrowUp") {
+            e.preventDefault();
+            setSelectedIndex((i) => Math.max(i - 1, 0));
+        } else if (e.key === "Enter" && selectedIndex >= 0) {
+            e.preventDefault();
+            handleSelect(filtered[selectedIndex]);
+        }
     };
 
     return (
@@ -132,6 +183,7 @@ const Spotlight = () => {
                         ref={inputRef}
                         value={query}
                         onChange={(e) => setQuery(e.target.value)}
+                        onKeyDown={handleKeyDown}
                         placeholder="Rechercher…"
                         className="flex-1 bg-transparent text-gray-800 dark:text-gray-100 text-lg outline-none placeholder:text-gray-400"
                     />
@@ -153,28 +205,36 @@ const Spotlight = () => {
                                 <p className="px-5 py-1 text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-widest">
                                     {category}
                                 </p>
-                                {entries.map((entry) => (
-                                    <button
-                                        key={entry.id}
-                                        onClick={() => handleSelect(entry)}
-                                        className="w-full flex items-center gap-3 px-5 py-2.5 hover:bg-blue-500 hover:text-white dark:hover:bg-blue-600 transition-colors cursor-pointer group"
-                                    >
-                                        <img
-                                            src={entry.icon}
-                                            alt=""
-                                            className="w-7 h-7 object-contain rounded"
-                                            onError={(e) => { e.target.style.display = "none"; }}
-                                        />
-                                        <div className="text-left">
-                                            <p className="text-sm font-medium text-gray-800 dark:text-gray-100 group-hover:text-white">
-                                                {entry.label}
-                                            </p>
-                                            <p className="text-xs text-gray-400 group-hover:text-blue-100">
-                                                {entry.subtitle}
-                                            </p>
-                                        </div>
-                                    </button>
-                                ))}
+                                {entries.map((entry) => {
+                                    const flatIndex = filtered.indexOf(entry);
+                                    const isSelected = flatIndex === selectedIndex;
+                                    return (
+                                        <button
+                                            key={entry.id}
+                                            onClick={() => handleSelect(entry)}
+                                            className={`w-full flex items-center gap-3 px-5 py-2.5 transition-colors cursor-pointer group ${
+                                                isSelected
+                                                    ? "bg-blue-500 text-white"
+                                                    : "hover:bg-blue-500 hover:text-white"
+                                            }`}
+                                        >
+                                            <img
+                                                src={entry.icon}
+                                                alt=""
+                                                className="w-7 h-7 object-contain rounded"
+                                                onError={(e) => { e.target.style.display = "none"; }}
+                                            />
+                                            <div className="text-left">
+                                                <p className={`text-sm font-medium ${isSelected ? "text-white" : "text-gray-800 dark:text-gray-100 group-hover:text-white"}`}>
+                                                    {entry.label}
+                                                </p>
+                                                <p className={`text-xs truncate max-w-[480px] ${isSelected ? "text-blue-100" : "text-gray-400 group-hover:text-blue-100"}`}>
+                                                    {entry.subtitle}
+                                                </p>
+                                            </div>
+                                        </button>
+                                    );
+                                })}
                             </div>
                         ))}
                     </div>

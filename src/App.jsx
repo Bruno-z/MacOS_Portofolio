@@ -7,6 +7,8 @@ import PortfolioEasterEgg from "#components/PortfolioEasterEgg.jsx";
 import ProjectOpener from "#components/ProjectOpener.jsx";
 import Screensaver from "#components/Screensaver.jsx";
 import DesktopCat from "#components/DesktopCat.jsx";
+import Notification from "#components/Notification.jsx";
+import DesktopWidgets from "#components/DesktopWidgets.jsx";
 import { useState } from "react"
 import  { Draggable} from "gsap/Draggable";
 import {Safari, Terminal, Resume, Finder, Text,ImageWindowContent, Contact, Gallery, Video, AboutMac} from "#windows/index.js";
@@ -49,6 +51,8 @@ const App = () => {
                <Screensaver/>
                <DesktopCat/>
            </main>
+           <Notification trigger={!isLocked} />
+           <DesktopWidgets />
         </div>
     )
 }
