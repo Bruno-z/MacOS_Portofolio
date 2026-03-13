@@ -12,32 +12,6 @@ body {
     height: 100dvh;
 }
 
-/* ---- Background animations ---- */
-@keyframes kenBurns {
-    0%   { transform: scale(1)    translate(0, 0); }
-    50%  { transform: scale(1.04) translate(-0.8%, 0.3%); }
-    100% { transform: scale(1)    translate(0, 0); }
-}
-@keyframes kenBurnsAlt {
-    0%   { transform: scale(1)    translate(0, 0); }
-    50%  { transform: scale(1.05) translate(0.6%, -0.4%); }
-    100% { transform: scale(1)    translate(0, 0); }
-}
-.ken-burns     { animation: kenBurns    25s ease-in-out infinite; }
-.ken-burns-alt { animation: kenBurnsAlt 30s ease-in-out infinite; }
-
-@keyframes flyLeft {
-    0%   { transform: translateX(110vw); opacity: 0; }
-    4%   { opacity: 1; }
-    96%  { opacity: 1; }
-    100% { transform: translateX(-10vw); opacity: 0; }
-}
-
-@keyframes twinkle {
-    0%, 100% { opacity: 0.15; transform: scale(1);   }
-    50%      { opacity: 1;    transform: scale(1.4); }
-}
-
 
 
 @theme {
@@ -429,6 +403,28 @@ body {
             }
         }
     }
+}
+
+/* ============================================================
+   ANIMATED BACKGROUND
+   ============================================================ */
+@keyframes kenBurns {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+.ken-burns { animation: kenBurns 25s ease-in-out infinite; }
+
+@keyframes flyLeft {
+    0%   { transform: translateX(110vw); opacity: 0; }
+    4%   { opacity: 1; }
+    96%  { opacity: 1; }
+    100% { transform: translateX(-10vw); opacity: 0; }
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.15; transform: scale(1);   }
+    50%      { opacity: 1;    transform: scale(1.4); }
 }
 
 /* ============================================================

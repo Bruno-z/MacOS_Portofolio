@@ -1,5 +1,5 @@
 import {Navbar, Welcome, Dock, Home, LockScreen, Spotlight, MobileOverlay} from "#components"
-import BackgroundVideo from "#components/BackgroundVideo.jsx";
+import AnimatedBackground from "#components/AnimatedBackground.jsx";
 import BootScreen from "#components/BootScreen.jsx"
 import MissionControl from "#components/MissionControl.jsx";
 import CursorTrail from "#components/CursorTrail.jsx";
@@ -21,7 +21,7 @@ const App = () => {
 
     return (
         <div>
-           <BackgroundVideo />
+           <AnimatedBackground />
            {!hasBooted && <BootScreen onDone={() => setHasBooted(true)} />}
            <MobileOverlay />
            {isLocked && <LockScreen onUnlock={() => setIsLocked(false)} />}
